@@ -1,0 +1,76 @@
+While Index < 5000
+ Index = Index + 1
+  If InStr(1, ActiveCell, "View summary", 1) > 0 Then
+  ActiveCell.Rows("1:13").EntireRow.Select
+    Selection.Delete Shift:=xlUp
+    ActiveCell.Offset(0, 1).Range("A1").Select
+    
+    ElseIf InStr(1, ActiveCell, "View conversation", 1) > 0 Then
+  ActiveCell.Rows("1:12").EntireRow.Select
+    Selection.Delete Shift:=xlUp
+    ActiveCell.Offset(0, 1).Range("A1").Select
+    ElseIf InStr(1, ActiveCell, "retweets", 1) > 0 Then
+  ActiveCell.Rows("1:12").EntireRow.Select
+    Selection.Delete Shift:=xlUp
+    ActiveCell.Offset(0, 1).Range("A1").Select
+ElseIf InStr(1, ActiveCell, "retweet", 1) > 0 Then
+     ActiveCell.Rows("1:13").EntireRow.Select
+    Selection.Delete Shift:=xlUp
+    ActiveCell.Offset(0, 1).Range("A1").Select
+ElseIf InStr(1, ActiveCell, Range("A2"), 1) > 0 Then
+     ActiveCell.Rows("1:1").EntireRow.Select
+    Selection.Delete Shift:=xlUp
+    ActiveCell.Offset(0, 1).Range("A1").Select
+ElseIf InStr(1, ActiveCell, "added,", 1) > 0 Then
+    ActiveCell.Rows("1:2").EntireRow.Select
+    Selection.Delete Shift:=xlUp
+    ActiveCell.Offset(0, 1).Range("A1").Select
+ElseIf InStr(1, ActiveCell, "In reply to", 1) > 0 Then
+    ActiveCell.Rows("1:1").EntireRow.Select
+    Selection.Delete Shift:=xlUp
+    ActiveCell.Offset(0, 1).Range("A1").Select
+ElseIf IsEmpty(ActiveCell) Then
+    ActiveCell.Rows("1:1").EntireRow.Select
+    Selection.Delete Shift:=xlUp
+    ActiveCell.Offset(0, 1).Range("A1").Select
+ElseIf ActiveCell = "More" Then
+    ActiveCell.Rows("1:1").EntireRow.Select
+    Selection.Delete Shift:=xlUp
+    ActiveCell.Offset(0, 1).Range("A1").Select
+ElseIf ActiveCell = "View photo" Then
+    ActiveCell.Rows("1:1").EntireRow.Select
+    Selection.Delete Shift:=xlUp
+    ActiveCell.Offset(0, 1).Range("A1").Selec
+  Else
+   ActiveCell.Offset(1, 0).Range("A1").Select
+   End If
+   Wend
+End Sub
+
+
+
+
+Sub Macro5()
+'
+' Macro5 Macro
+FTW = Cells(2, "A").Value
+Final = "C:\Users\Puneet\Desktop\Data New\" & FTW & ".xlsx"
+    Application.Run "'15 sepxls.xlsm'!Macro1"
+    ActiveWindow.ScrollRow = 207
+    ActiveWindow.ScrollRow = 200
+    ActiveWindow.ScrollRow = 169
+    ActiveWindow.ScrollRow = 1
+    Range("B2").Select
+    Application.Run "'15 sepxls.xlsm'!Macro2"
+    ActiveWorkbook.SaveAs Filename:=Final, FileFormat:=xlOpenXMLWorkbook _
+        , CreateBackup:=False
+    'ActiveWorkbook.SaveAs Filename:= _
+  '      "C:\Users\Puneet\Desktop\Data New\11 sep.xlsx", FileFormat:=xlOpenXMLWorkbook _
+        , CreateBackup:=False
+  Cells(3, "A").Value = FTW
+Range("F2").Select
+    ActiveCell.FormulaR1C1 = "=RIGHT(R[52]C[-4],11)"
+    Range("E2").Select
+    ActiveCell.FormulaR1C1 = "=RIGHT(R[51]C[-3],11)"
+End Sub
+
